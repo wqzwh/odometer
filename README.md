@@ -16,4 +16,4 @@ new Odometer({
 
 ```
 
-其它剩余配置用法https://github.com/HubSpot/odometer保持一致
+其它剩余配置用法https://github.com/HubSpot/odometer 保持一致
