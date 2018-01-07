@@ -7,16 +7,17 @@
 </style>
 <script>
 window.odometerOptions = {
-  format: '(ddd).dd'
+  format: '(,ddd)',
+  numberLength:12
 };
 </script>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="./jquery.min.js"></script>
 <script src="../odometer.min.js"></script>
 <div class="odometer">3252</div>
 
 <script>
-  setTimeout(function(){
-    $('.odometer').html(423234234);
-  }, 1000);
+  setInterval(function(){
+    let data = Math.random() * 100000000
+    $('.odometer').html(data);
+  }, 5000);
 </script>
