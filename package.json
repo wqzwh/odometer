@@ -1,6 +1,6 @@
 {
   "name": "ga-odometer",
-  "version": "0.4.9",
+  "version": "0.4.10",
   "description": "odometer",
   "main": "./dist/odometer.min.js",
   "scripts": {
