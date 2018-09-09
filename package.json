@@ -1,5 +1,5 @@
 {
-  "name": "ga-odometer",
+  "name": "odometer",
   "version": "0.4.10",
   "description": "odometer",
   "main": "./dist/odometer.min.js",
@@ -13,7 +13,11 @@
   "keywords": [
     "odometer"
   ],
-  "author": "wangqi",
+  "authors": [
+    "Adam Schwartz <adam.flynn.schwartz@gmail.com>",
+    "Zack Bloom <zackbloom@gmail.com>",
+    "wangqi <wangziqihappy@163.com>"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/wqzwh/ga-odometer/issues"
