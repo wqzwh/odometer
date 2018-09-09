@@ -1,5 +1,5 @@
 (function() {
-  var MIN_INTEGER_LEN, COUNT_FRAMERATE, COUNT_MS_PER_FRAME, DIGIT_FORMAT, DIGIT_HTML, DIGIT_SPEEDBOOST, DURATION, FORMAT_MARK_HTML, FORMAT_PARSER, FRAMERATE, FRAMES_PER_VALUE, MS_PER_FRAME, MutationObserver, Odometer, RIBBON_HTML, TRANSITION_END_EVENTS, TRANSITION_SUPPORT, VALUE_HTML, addClass, createFromHTML, fractionalPart, now, removeClass, requestAnimationFrame, round, transitionCheckStyles, trigger, truncate, wrapJQuery, _jQueryWrapped, _old, _ref, _ref1,
+  var ZERO_FLAG, MIN_INTEGER_LEN, COUNT_FRAMERATE, COUNT_MS_PER_FRAME, DIGIT_FORMAT, DIGIT_HTML, DIGIT_SPEEDBOOST, DURATION, FORMAT_MARK_HTML, FORMAT_PARSER, FRAMERATE, FRAMES_PER_VALUE, MS_PER_FRAME, MutationObserver, Odometer, RIBBON_HTML, TRANSITION_END_EVENTS, TRANSITION_SUPPORT, VALUE_HTML, addClass, createFromHTML, fractionalPart, now, removeClass, requestAnimationFrame, round, transitionCheckStyles, trigger, truncate, wrapJQuery, _jQueryWrapped, _old, _ref, _ref1,
     __slice = [].slice;
 
   VALUE_HTML = '<span class="odometer-value"></span>';
@@ -25,6 +25,8 @@
   DIGIT_SPEEDBOOST = .5;
 
   MIN_INTEGER_LEN = 12;
+
+  ZERO_FLAG = false;
 
   MS_PER_FRAME = 1000 / FRAMERATE;
 
@@ -148,6 +150,8 @@
       }
 
       MIN_INTEGER_LEN = this.options.numberLength || MIN_INTEGER_LEN;
+
+      ZERO_FLAG = this.options.zeroFlag || ZERO_FLAG;
 
       this.MAX_VALUES = ((this.options.duration / MS_PER_FRAME) / FRAMES_PER_VALUE) | 0;
       this.resetFormat();
@@ -327,20 +331,35 @@
        *
        * _allref 替换了 _ref字段
        */
+
+      // 重新拼装 _ref 数字，将零和补零做区分
+      // zflag true 代表是数字中的零，fasle代表是补的零
+      let _new_ref = []
+      if(ZERO_FLAG) {
+        for(let i = 0, l = _ref.length; i < l; i++) {
+          _new_ref.push({
+            num: _ref[i],
+            zflag: true
+          })
+        }
+      }
+
       var _newref = [];
       var _allref = [];
 
       if(_ref.length < MIN_INTEGER_LEN){
         for(let i = 0; i< MIN_INTEGER_LEN - _ref.length; i++){
-          _newref.push('0')
+          _newref.push(ZERO_FLAG ? {
+            num: '0',
+            zflag: false
+          } : '0')
         }
       }
-      _allref = _ref.concat(_newref);
+      _allref = ZERO_FLAG ? _new_ref.concat(_newref) :  _ref.concat(_newref);
       /**
        * todo 解决补零动画问题结束
        *
        */
-
       for (_j = 0, _len1 = _allref.length; _j < _len1; _j++) {
         digit = _allref[_j];
         if (digit === '.') {
@@ -403,10 +422,10 @@
       if (repeating == null) {
         repeating = true;
       }
-      if (value === '-') {
-        return this.addSpacer(value, null, 'odometer-negation-mark');
+      if ((ZERO_FLAG ? value.num : value ) === '-') {
+        return this.addSpacer(ZERO_FLAG ? value.num : value, null, 'odometer-negation-mark');
       }
-      if (value === '.') {
+      if ((ZERO_FLAG ? value.num : value ) === '.') {
         return this.addSpacer((_ref = this.format.radix) != null ? _ref : '.', null, 'odometer-radix-mark');
       }
       if (repeating) {
@@ -428,12 +447,13 @@
         }
       }
       digit = this.renderDigit();
-      digit.querySelector('.odometer-value').innerHTML = value;
-
+      digit.querySelector('.odometer-value').innerHTML = ZERO_FLAG ? value.num : value;
       /**
        * todo
        */
-      digit.setAttribute("name", 'digit'+value)
+      if(ZERO_FLAG) {
+        digit.setAttribute("name", 'digit-'+ value.zflag)
+      }
 
       this.digits.push(digit);
       return this.insertDigit(digit);

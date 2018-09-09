@@ -1,23 +1,115 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="../themes/odometer-theme-car.css" />
-<style>
-.odometer {
-  font-size: 40px;
-}
-</style>
-<script>
-window.odometerOptions = {
-  format: '(,ddd)',
-  numberLength:12
-};
-</script>
-<script src="./jquery.min.js"></script>
-<script src="../odometer.min.js"></script>
-<div class="odometer">3252</div>
+<html lang="en">
 
-<script>
-  setInterval(function(){
-    let data = Math.random() * 100000000
-    $('.odometer').html(data);
-  }, 5000);
-</script>
+<head>
+  <link rel="stylesheet" href="../themes/odometer-theme-default.css" />
+  <style>
+    .odometer {
+      font-size: 40px;
+    }
+
+    @font-face {
+      font-family: 'LiquidCrystal';
+      font-style: normal;
+      font-weight: 400;
+      src: local('LiquidCrystal'), local('LiquidCrystal'), url('./fonts/LiquidCrystal.otf') format('woff');
+    }
+
+    @font-face {
+      font-family: 'PingFang Medium';
+      font-style: normal;
+      font-weight: 400;
+      src: local('PingFang Medium'), local('PingFang Medium'), url('./fonts/PingFang Medium.ttf') format('woff');
+    }
+
+    .odometer-body {
+      background: #000;
+      position: relative;
+    }
+
+    .odometer-body .text-num-body .num-body {
+      text-align: center;
+    }
+
+    .odometer-body .text-num-body .format-money-body span {
+      font-size: 20px;
+      display: inline-block;
+      background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#fdf3df), to(#f1b641));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      position: absolute;
+      font-weight: bold;
+    }
+
+    .odometer-body .text-num-body .mobile-compare span {
+      margin-left: 20px;
+      line-height: 23px;
+    }
+
+    .odometer-body .text-num-body .odometer.odometer-auto-theme .odometer-digit,
+    .odometer-body .text-num-body .odometer.odometer-theme-default .odometer-digit {
+      margin-left: 7px;
+      line-height: 117px;
+    }
+
+    .odometer-body .text-num-body .odometer-inside {
+      font-size: 80px;
+      font-family: 'LiquidCrystal';
+      background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#fdf3df), to(#f1b641));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+
+    .odometer-body .text-num-body .odometer.odometer-auto-theme .odometer-digit .odometer-value,
+    .odometer-body .text-num-body .odometer.odometer-theme-default .odometer-digit .odometer-value {
+      background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#fdf3df), to(#f1b641));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+
+    .odometer-digit[name='digit-false']{
+      opacity:0.5
+    }
+    .odometer-digit[name='digit-false']+.odometer-formatting-mark{
+      opacity:0.5
+    }
+    .odometer-digit[name='digit-true']+.odometer-formatting-mark{
+      opacity:1
+    }
+
+  </style>
+  <script>
+    window.odometerOptions = {
+      format: '(,ddd)',
+      numberLength: 12,
+      zeroFlag: true,
+      duration: 80
+    };
+
+  </script>
+  <script src="./jquery.min.js"></script>
+  <script src="../odometer.js"></script>
+</head>
+
+<body>
+  <div class="odometer-body">
+    <div class="text-num-body">
+      <div class="odometer">3252</div>
+    </div>
+  </div>
+  <script>
+    setInterval(function(){
+      let data = Math.random() * 100000000
+      $('.odometer').html(data);
+    }, 4000);
+
+  </script>
+</body>
+
+</html>
