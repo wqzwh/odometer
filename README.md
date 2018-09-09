@@ -31,7 +31,7 @@ new Odometer({
 });
 ```
 
-<img src="https://github.com/wqzwh/ga-odometer/blob/master/img/1.gif?raw=true" style="max-width:100%;">
+<img src="https://github.com/wqzwh/ga-odometer/blob/master/img/2.gif?raw=true" style="max-width:100%;">
 
 其它剩余配置用法https://github.com/HubSpot/odometer 保持一致
 
