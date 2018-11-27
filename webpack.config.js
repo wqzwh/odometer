@@ -6,12 +6,15 @@ var path = require('path');
 
 module.exports = {
   entry: {
-    odometer: './odometer.js'
+    Odometer: './odometer.js'
   },
   output: {
     path: path.resolve(__dirname, './'),
     publicPath: '/',
-    filename: '[name].min.js'
+    filename: '[name].min.js',
+    library: '[name]',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
   // 加载器
   module: {

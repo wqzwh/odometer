@@ -1,5 +1,30 @@
 ## 优化数字滚动插件自动补零问题
 
+### 基本使用
+删除默认初始化代码，需要自己手动初始化渲染DOM结构，需要添加初始化方法：
+```js
+const odometerOptions = {
+  format: '(,ddd).ddd',
+  numberLength: 6,
+  duration: 500,
+};
+Odometer.init(odometerOptions)
+odometer.innerHTML = 456.324
+```
+或者这样使用
+```js
+const odometerOptions = {
+  format: '(,ddd).ddd',
+  numberLength: 6,
+  duration: 500,
+};
+new Odometer({
+  el: document.getElementById('odometer'),
+  ...odometerOptions
+})
+odometer.innerHTML = 456.324
+```
+
 ### 新增配置项
 
 #### numberLength
@@ -17,7 +42,7 @@ new Odometer({
 ```
 <img src="https://github.com/wqzwh/ga-odometer/blob/master/img/1.gif?raw=true" style="max-width:100%;">
 
-#### zeroFlag 
+#### zeroFlag
 是否区分补零和数字中的零
 
 ```js

@@ -148,7 +148,7 @@
       if ((_base = this.options).duration == null) {
         _base.duration = DURATION;
       }
-
+      console.log(this.options)
       MIN_INTEGER_LEN = this.options.numberLength || MIN_INTEGER_LEN;
 
       ZERO_FLAG = this.options.zeroFlag || ZERO_FLAG;
@@ -642,7 +642,7 @@
     }
   }, 0);
 
-  Odometer.init = function() {
+  Odometer.init = function(options) {
     var el, elements, _i, _len, _ref1, _results;
     if (document.querySelectorAll == null) {
       return;
@@ -653,27 +653,28 @@
       el = elements[_i];
       _results.push(el.odometer = new Odometer({
         el: el,
-        value: (_ref1 = el.innerText) != null ? _ref1 : el.textContent
+        value: (_ref1 = el.innerText) != null ? _ref1 : el.textContent,
+        ...options
       }));
     }
     return _results;
   };
 
-  if ((((_ref1 = document.documentElement) != null ? _ref1.doScroll : void 0) != null) && (document.createEventObject != null)) {
-    _old = document.onreadystatechange;
-    document.onreadystatechange = function() {
-      if (document.readyState === 'complete' && Odometer.options.auto !== false) {
-        Odometer.init();
-      }
-      return _old != null ? _old.apply(this, arguments) : void 0;
-    };
-  } else {
-    document.addEventListener('DOMContentLoaded', function() {
-      if (Odometer.options.auto !== false) {
-        return Odometer.init();
-      }
-    }, false);
-  }
+  // if ((((_ref1 = document.documentElement) != null ? _ref1.doScroll : void 0) != null) && (document.createEventObject != null)) {
+  //   _old = document.onreadystatechange;
+  //   document.onreadystatechange = function() {
+  //     if (document.readyState === 'complete' && Odometer.options.auto !== false) {
+  //       Odometer.init();
+  //     }
+  //     return _old != null ? _old.apply(this, arguments) : void 0;
+  //   };
+  // } else {
+  //   document.addEventListener('DOMContentLoaded', function() {
+  //     if (Odometer.options.auto !== false) {
+  //       return Odometer.init();
+  //     }
+  //   }, false);
+  // }
 
   if (typeof define === 'function' && define.amd) {
     define([], function() {

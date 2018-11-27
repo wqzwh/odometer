@@ -94,16 +94,17 @@
 
   </script>
   <script src="./jquery.min.js"></script>
-  <script src="../odometer.js"></script>
+  <script src="../odometer.min.js"></script>
 </head>
 
 <body>
   <div class="odometer-body">
     <div class="text-num-body">
-      <div class="odometer">3252</div>
+      <div class="odometer"></div>
     </div>
   </div>
   <script>
+    Odometer.init(odometerOptions);
     setInterval(function(){
       let data = Math.random() * 100000000
       $('.odometer').html(data);

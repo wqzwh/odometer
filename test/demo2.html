@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>示例</title>
+  <link rel="stylesheet" href="../themes/odometer-theme-minimal.css" />
+  <script src="../odometer.js"></script>
+</head>
+
+<body>
+  <div id="odometer" class="odometer"></div>
+  <script>
+  window.odometerOptions = {
+    format: '(,ddd).ddd',
+    numberLength: 6,
+    duration: 500,
+  };
+  Odometer.init(odometerOptions);
+
+  // new Odometer({
+  //   el: document.getElementById('odometer'),
+  //   ...odometerOptions
+  // })
+
+  setTimeout(function() {
+    odometer.innerHTML = 456.324;
+  }, 1000);
+
+  </script>
+</body>
+
+</html>
