@@ -148,7 +148,7 @@
       if ((_base = this.options).duration == null) {
         _base.duration = DURATION;
       }
-      console.log(this.options)
+
       MIN_INTEGER_LEN = this.options.numberLength || MIN_INTEGER_LEN;
 
       ZERO_FLAG = this.options.zeroFlag || ZERO_FLAG;
