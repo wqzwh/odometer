@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wqzwh/ga-odometer.git"
+    "url": "git+https://github.com/wqzwh/odometer.git"
   },
   "keywords": [
     "odometer"
@@ -20,9 +20,9 @@
   ],
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/wqzwh/ga-odometer/issues"
+    "url": "https://github.com/wqzwh/odometer/issues"
   },
-  "homepage": "https://github.com/wqzwh/ga-odometer#readme",
+  "homepage": "https://github.com/wqzwh/odometer#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
