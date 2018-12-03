@@ -447,10 +447,7 @@
         }
       }
       digit = this.renderDigit();
-      digit.querySelector('.odometer-value').innerHTML = ZERO_FLAG ? value.num : value;
-      /**
-       * todo
-       */
+      digit.querySelector('.odometer-value').innerHTML = value.num;
       if(ZERO_FLAG) {
         digit.setAttribute("name", 'digit-'+ value.zflag)
       }
@@ -629,20 +626,22 @@
 
   Odometer.options = (_ref = window.odometerOptions) != null ? _ref : {};
 
-  setTimeout(function() {
-    var k, v, _base, _ref1, _results;
-    if (window.odometerOptions) {
-      _ref1 = window.odometerOptions;
-      _results = [];
-      for (k in _ref1) {
-        v = _ref1[k];
-        _results.push((_base = Odometer.options)[k] != null ? (_base = Odometer.options)[k] : _base[k] = v);
-      }
-      return _results;
-    }
-  }, 0);
+  // 删除这一个代码块，避免手动初始化无法获取初始配置项问题
+  // setTimeout(function() {
+  //   var k, v, _base, _ref1, _results;
+  //   if (window.odometerOptions) {
+  //     _ref1 = window.odometerOptions;
+  //     _results = [];
+  //     for (k in _ref1) {
+  //       v = _ref1[k];
+  //       _results.push((_base = Odometer.options)[k] != null ? (_base = Odometer.options)[k] : _base[k] = v);
+  //     }
+  //     return _results;
+  //   }
+  // }, 0);
 
   Odometer.init = function(options) {
+    Odometer.options = options
     var el, elements, _i, _len, _ref1, _results;
     if (document.querySelectorAll == null) {
       return;

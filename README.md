@@ -4,6 +4,7 @@
 删除默认初始化代码，需要自己手动初始化渲染DOM结构，需要添加初始化方法：
 ```js
 const odometerOptions = {
+  selector: '.odometer1',
   format: '(,ddd).ddd',
   numberLength: 6,
   duration: 500,
